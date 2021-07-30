@@ -77,9 +77,9 @@
       {/if}
     {/if}
   </div>
-
-  <div class="requirements">
-    {#if selectedOps.length > 0}
+  
+  {#if selectedOps.length > 0}
+    <div class="requirements">
       <h2>Investigations required:</h2>
       <ul>
         {#each Object.keys(nonConditionedItems) as wuItem}
@@ -89,8 +89,12 @@
           <li>{wuItem}</li>
         {/each}
       </ul>
-    {/if}
-  </div>
+    </div>
+  {/if}
+  
+  <footer>
+    Copyright &copy; Christopher Chen 2021-
+  </footer>
 </main>
 
 <style lang='scss'>
@@ -116,12 +120,13 @@
     main {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 4em 1fr;
+      grid-template-rows: 4em 1fr calc(1rem + 10px);
       gap: 0px 0px;
       grid-auto-flow: row;
       grid-template-areas:
         "header header"
-        "checklist requirements";
+        "checklist requirements"
+        "footer footer";
       height: 100vh;
     }
   }
@@ -144,6 +149,17 @@
     background-color: #87cefa;
     color: white;
     padding: 0 1rem;
+  }
+
+  footer {
+    grid-area: footer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 1em;
+    background-color: #87cefa;
+    color: white;
+    font-size: 0.8rem;
   }
 
   h1, h2, h3 {
