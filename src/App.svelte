@@ -102,17 +102,34 @@
     margin: 0;
     min-height: 100vh;
   }
+  
+  .checklist, .requirements {
+    padding: 5px 1rem;
+    overflow-y: auto;
+  }
 
-  main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 4em 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "header header"
-      ". .";
-    height: 100vh;
+  @media only screen and (min-width: 768px) {
+    .requirements {
+      border-left: 2px solid #87cefa;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 4em 1fr;
+      gap: 0px 0px;
+      grid-auto-flow: row;
+      grid-template-areas:
+        "header header"
+        "checklist requirements";
+      height: 100vh;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .requirements {
+      border-top: 2px solid #87cefa;
+    }
   }
 
   header {
@@ -130,14 +147,10 @@
   }
 
   .checklist {
-    padding: 5px 1rem;
-    padding-left: 1rem;
-    overflow-y: auto;
+    grid-area: checklist;
   }
 
   .requirements {
-    padding: 5px 1rem;
-    overflow-y: auto;
-    border-left: 2px solid #87cefa;
+    grid-area: requirements;
   }
 </style>
