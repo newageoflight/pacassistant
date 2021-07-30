@@ -127,6 +127,10 @@
   }
 
   @media only screen and (max-width: 768px) {
+    .checklist {
+      padding-bottom: 1rem;
+    }
+
     .requirements {
       border-top: 2px solid #87cefa;
     }
