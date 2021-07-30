@@ -139,16 +139,6 @@
     .requirements {
       border-top: 2px solid #87cefa;
     }
-
-    main {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-
-      > .checklist {
-        flex: 1;
-      }
-    }
   }
 
   header {
