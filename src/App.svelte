@@ -93,7 +93,7 @@
   </div>
 </main>
 
-<style>
+<style lang='scss'>
   :root {
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
   }

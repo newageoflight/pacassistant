@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "lodash-es": "^4.17.21",
-    "node-sass": "^6.0.1"
+    "node-sass": "^6.0.1",
+    "sass": "^1.36.0"
   }
 }
