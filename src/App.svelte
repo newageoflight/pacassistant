@@ -11,10 +11,9 @@
   function getWorkup(ops: string[]): CoercedWorkup {
     let chosen: Workup[] = ops.map(v => PreOpWorkupNames[v]);
     // while the ES6 spread syntax is good there are some special rules for merging here:
-    // - non-nulls take priority over nulls
+    // - null values represent "no workup needed" and have lower priority than "some workup needed", but will merge if both are null
     // - single strings need to be coerced to string arrays
     // - array values need to be merged as if they were sets
-    console.log(chosen.length)
     if (chosen.length > 1)
       return chosen.reduce((a, b) => {
         let merged = Object.fromEntries(Object.entries(a).map(([k,v]) => [k, coerceType(v)]));
@@ -89,6 +88,7 @@
           <li>{wuItem}</li>
         {/each}
       </ul>
+      <p>As per pandemic rules, please strongly encourage all patients to get a <strong>COVID swab within 3 days</strong> of coming to hospital</p>
     </div>
   {/if}
   
