@@ -87,13 +87,14 @@
         {#each Object.keys(conditionSatisfiedItems) as wuItem}
           <li>{wuItem}</li>
         {/each}
+        <li>Bloods + swabs</li>
       </ul>
-      <p>As per pandemic rules, please strongly encourage all patients to get a <strong>COVID swab within 3 days</strong> of coming to hospital</p>
+      <p>⚠️ As per pandemic rules, please strongly encourage all patients to get a <strong>COVID swab within 3 days</strong> of coming to hospital</p>
     </div>
   {/if}
   
   <footer>
-    Copyright &copy; Christopher Chen 2021-
+    Copyright &copy;&nbsp;<a href="https://github.com/newageoflight/">Christopher Chen</a>&nbsp;2021-
   </footer>
 </main>
 
@@ -160,6 +161,10 @@
     background-color: #87cefa;
     color: white;
     font-size: 0.8rem;
+
+    a {
+      color: white;
+    }
   }
 
   h1, h2, h3 {
