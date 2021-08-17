@@ -89,7 +89,7 @@
         {/each}
         <li>Bloods + swabs</li>
       </ul>
-      <p>⚠️ As per pandemic rules, please strongly encourage all patients to get a <strong>COVID swab within 3 days</strong> of coming to hospital</p>
+      <p>⚠️ As per pandemic rules, please strongly encourage any patients coming from <a href="https://covid19nearme.com.au/">a hot zone</a> to get a <strong>COVID swab within 4 days</strong> of coming to hospital</p>
     </div>
   {/if}
   

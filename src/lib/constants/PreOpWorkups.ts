@@ -42,6 +42,6 @@ export const PreOpWorkupNames = {
     "Valvuloplasty or Bentall's": ValveBentalls,
     "Lung resection": LungOps,
 }
-const PreOpWorkups = {CABG, ValveBentalls, LungOps};
+const PreOpWorkups = { CABG, ValveBentalls, LungOps };
 
 export default PreOpWorkups;
