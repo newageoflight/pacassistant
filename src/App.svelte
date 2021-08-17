@@ -150,6 +150,8 @@
     background-color: #87cefa;
     color: white;
     padding: 0 1rem;
+    position: sticky;
+    top: 0;
   }
 
   footer {
@@ -161,6 +163,8 @@
     background-color: #87cefa;
     color: white;
     font-size: 0.8rem;
+    position: sticky;
+    bottom: 0;
 
     a {
       color: white;
