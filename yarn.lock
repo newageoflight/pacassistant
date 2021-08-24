@@ -1567,6 +1567,11 @@ svelte-preprocess@^4.0.0, svelte-preprocess@^4.7.2:
     detect-indent "^6.0.0"
     strip-indent "^3.0.0"
 
+svelte-simple-modal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/svelte-simple-modal/-/svelte-simple-modal-1.0.0.tgz#1a0c06d80c593630a82456123fef1833aa9205c8"
+  integrity sha512-xHfbNiD43WF7TLNkWT4yo1OPrAUkANvwTbejn9ix4n8V/KxlfqiTFmQoQlVSlR/ipfyVqh/lG5h1ZoEkHEUvlg==
+
 svelte@^3.37.0:
   version "3.41.0"
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.41.0.tgz#2009fd6681453ffb8b5aaa57f4a89a8be3dedd78"

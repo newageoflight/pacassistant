@@ -4,7 +4,8 @@
   import { coerceType } from "./lib/utils/utils";
   import { uniq, intersection } from 'lodash-es';
   import Icon from '@iconify/svelte';
-
+  import Modal from 'svelte-simple-modal';
+  
   let selectedOps = [];
   let conditions = [];
 
@@ -94,7 +95,12 @@
   {/if}
   
   <footer>
-    Copyright &copy;&nbsp;<a href="https://github.com/newageoflight/">Christopher Chen</a>&nbsp;2021-
+    <div class="leading">Copyright &copy;&nbsp;<a href="https://github.com/newageoflight/">Christopher Chen</a>&nbsp;2021-</div>
+    <div class="button-container">
+      <button on:click={() => alert("To help PAC interns book visits. This does not constitute official medical advice - always consult a registrar!")}>
+        <Icon icon="ant-design:question-circle-outlined" />
+      </button>
+    </div>
   </footer>
 </main>
 
@@ -169,6 +175,10 @@
     a {
       color: white;
     }
+    
+    > .leading {
+      flex: 1
+    }
   }
 
   h1, h2, h3 {
@@ -181,5 +191,20 @@
 
   .requirements {
     grid-area: requirements;
+  }
+
+  button {
+    background-color: transparent;
+    border-radius: 5px;
+    border-color: transparent;
+    outline: none;
+
+    &:hover {
+      background-color: rgba(255,255,255,0.3);
+    }
+
+    &:active {
+      background-color: rgba(255,255,255,0.5);
+    }
   }
 </style>
