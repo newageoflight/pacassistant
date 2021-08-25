@@ -1,24 +1,24 @@
 import type { Workup } from '../types/Workups';
-import { DENTAL_CLEARANCE_NEEDED, DILATED_AORTA, NON_CLEANSKIN, VIABLE_CONTRAST_CHEST_CT, VIABLE_ECHO } from './Conditions';
+import { DENTAL_CLEARANCE_NEEDED, DILATED_AORTA, NEEDS_DUPLEX, NON_CLEANSKIN, VIABLE_CONTRAST_CHEST_CT, VIABLE_ECHO } from './Conditions';
 
 export const CABG: Workup = {
     "CXR": null,
     "ECHO": VIABLE_ECHO,
     "Coronary angiogram": null,
     "Spirometry": null,
-    "Carotid duplex": [">65yo", "PMHx stroke/TIA", "Carotid bruits on auscultation", "Left main coronary artery disease", "PVD"],
+    "Carotid duplex": NEEDS_DUPLEX,
     "Non-contrast CT chest": NON_CLEANSKIN,
     "CT aortogram": DILATED_AORTA,
     "LL arterial doppler": "Claudication or vascular insufficiency",
     "LL venous mapping": "Varicose veins",
-    "PFTs": ["Significant history of respiratory disease", "No recent PFTs available"],
+    "PFTs": "Significant history of respiratory disease with no recent PFTs",
 }
 
 export const ValveBentalls: Workup = {
     "CXR": null,
     "OPG": DENTAL_CLEARANCE_NEEDED,
     "ECHO": VIABLE_ECHO,
-    "Carotid duplex":  [">65yo", "PMHx stroke/TIA", "Carotid bruits on auscultation"],
+    "Carotid duplex": NEEDS_DUPLEX.slice(0, 3),
     "Coronary angiogram": [">40yo", "Smoking", "FHx angina/CAD", "PMHx of angina"],
     "Non-contrast CT chest": NON_CLEANSKIN,
     "CT aortogram": DILATED_AORTA,
@@ -33,7 +33,7 @@ export const LungOps: Workup = {
     "Contrast CT chest": VIABLE_CONTRAST_CHEST_CT,
     "PET-CT": "Suspected or confirmed cancer",
     "ECHO": ">65yo",
-    "Carotid duplex": [">65yo", "PMHx stroke/TIA", "Carotid bruits on auscultation"],
+    "Carotid duplex": NEEDS_DUPLEX.slice(0, 3),
     "Stress MIBI/ECHO": ["IHD risk factors", ">45yo"],
 }
 

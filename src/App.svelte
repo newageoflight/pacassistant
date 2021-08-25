@@ -1,10 +1,13 @@
 <script lang='ts'>
-  import { PreOpWorkupNames } from "./lib/constants/PreOpWorkups";
-  import type { CoercedWorkup, Workup } from "./lib/types/Workups";
-  import { coerceType } from "./lib/utils/utils";
   import { uniq, intersection } from 'lodash-es';
   import Icon from '@iconify/svelte';
   import Modal from 'svelte-simple-modal';
+
+  import Footer from "./lib/components/Footer.svelte";
+
+  import { PreOpWorkupNames } from "./lib/constants/PreOpWorkups";
+  import type { CoercedWorkup, Workup } from "./lib/types/Workups";
+  import { coerceType } from "./lib/utils/utils";
   
   let selectedOps = [];
   let conditions = [];
@@ -47,62 +50,57 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </svelte:head>
 
-<main>
-  <header>
-    <Icon icon='whh:pacman' style='font-size: 30px; transform: translateY(2px);' />
-    <span style='width: 10px;' />
-    <h1>PAC Assistant</h1>
-  </header>
-  
-  <div class="checklist">
-    <h2>The patient is coming for:</h2>
-    {#each Object.keys(PreOpWorkupNames) as op}
-      <label>
-        <input type="checkbox" bind:group={selectedOps} value={op}>
-        {op}
-      </label>
-      <br/>
-    {/each}
-    {#if selectedOps.length > 0}
-      <p>{selectedOps.join(' + ')}</p>
-      <h3>Check any of the following that apply:</h3>
-      {#if flatConds.length > 0}
-        {#each flatConds as cond}
+<Modal>
+  <main>
+      <header>
+        <Icon icon='whh:pacman' style='font-size: 30px; transform: translateY(2px);' />
+        <span style='width: 10px;' />
+        <h1>PAC Assistant</h1>
+      </header>
+      
+      <div class="checklist">
+        <h2>The patient is coming for:</h2>
+        {#each Object.keys(PreOpWorkupNames) as op}
           <label>
-            <input type="checkbox" bind:group={conditions} value={cond}>
-            {cond}
+            <input type="checkbox" bind:group={selectedOps} value={op}>
+            {op}
           </label>
           <br/>
         {/each}
+        {#if selectedOps.length > 0}
+          <p>{selectedOps.join(' + ')}</p>
+          <h3>Check any of the following that apply:</h3>
+          {#if flatConds.length > 0}
+            {#each flatConds as cond}
+              <label>
+                <input type="checkbox" bind:group={conditions} value={cond}>
+                {cond}
+              </label>
+              <br/>
+            {/each}
+          {/if}
+        {/if}
+      </div>
+      
+      {#if selectedOps.length > 0}
+        <div class="requirements">
+          <h2>Investigations required:</h2>
+          <ul>
+            {#each Object.keys(nonConditionedItems) as wuItem}
+              <li>{wuItem}</li>
+            {/each}
+            {#each Object.keys(conditionSatisfiedItems) as wuItem}
+              <li>{wuItem}</li>
+            {/each}
+            <li>Bloods + swabs</li>
+          </ul>
+          <p>⚠️ As per pandemic rules, please strongly encourage any patients coming from <a href="https://covid19nearme.com.au/">a hot zone</a> to get a <strong>COVID swab within 4 days</strong> of coming to hospital</p>
+        </div>
       {/if}
-    {/if}
-  </div>
-  
-  {#if selectedOps.length > 0}
-    <div class="requirements">
-      <h2>Investigations required:</h2>
-      <ul>
-        {#each Object.keys(nonConditionedItems) as wuItem}
-          <li>{wuItem}</li>
-        {/each}
-        {#each Object.keys(conditionSatisfiedItems) as wuItem}
-          <li>{wuItem}</li>
-        {/each}
-        <li>Bloods + swabs</li>
-      </ul>
-      <p>⚠️ As per pandemic rules, please strongly encourage any patients coming from <a href="https://covid19nearme.com.au/">a hot zone</a> to get a <strong>COVID swab within 4 days</strong> of coming to hospital</p>
-    </div>
-  {/if}
-  
-  <footer>
-    <div class="leading">Copyright &copy;&nbsp;<a href="https://github.com/newageoflight/">Christopher Chen</a>&nbsp;2021-</div>
-    <div class="button-container">
-      <button on:click={() => alert("To help PAC interns book visits. This does not constitute official medical advice - always consult a registrar!")}>
-        <Icon icon="ant-design:question-circle-outlined" />
-      </button>
-    </div>
-  </footer>
-</main>
+
+      <Footer />
+  </main>
+</Modal>
 
 <style lang='scss'>
   :root {
@@ -117,6 +115,10 @@
   .checklist, .requirements {
     padding: 5px 1rem;
     overflow-y: auto;
+  }
+
+  main {
+    width: 100vw;
   }
 
   @media only screen and (min-width: 768px) {
@@ -160,28 +162,7 @@
     top: 0;
   }
 
-  footer {
-    grid-area: footer;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 5px 1em;
-    background-color: #87cefa;
-    color: white;
-    font-size: 0.8rem;
-    position: sticky;
-    bottom: 0;
-
-    a {
-      color: white;
-    }
-    
-    > .leading {
-      flex: 1
-    }
-  }
-
-  h1, h2, h3 {
+  :global(h1, h2, h3) {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
@@ -191,20 +172,5 @@
 
   .requirements {
     grid-area: requirements;
-  }
-
-  button {
-    background-color: transparent;
-    border-radius: 5px;
-    border-color: transparent;
-    outline: none;
-
-    &:hover {
-      background-color: rgba(255,255,255,0.3);
-    }
-
-    &:active {
-      background-color: rgba(255,255,255,0.5);
-    }
   }
 </style>
